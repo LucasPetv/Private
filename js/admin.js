@@ -153,6 +153,16 @@ function escapeHtml(text) {
     return div.innerHTML;
 }
 
+// Validate URL to ensure only safe protocols
+function isValidUrl(urlString) {
+    try {
+        const url = new URL(urlString);
+        return url.protocol === 'http:' || url.protocol === 'https:';
+    } catch {
+        return false;
+    }
+}
+
 // Open admin modal
 function openAdminModal() {
     if (isAuthenticated()) {
@@ -208,6 +218,12 @@ function handleAddLink(e) {
     const url = document.getElementById('link-url').value.trim();
     const description = document.getElementById('link-description').value.trim();
     const icon = document.getElementById('link-icon').value.trim();
+    
+    // Validate URL to prevent javascript: and other unsafe protocols
+    if (!isValidUrl(url)) {
+        alert('Bitte gib eine gültige URL ein (http:// oder https://)');
+        return;
+    }
     
     if (title && url && description && icon) {
         addLink(title, url, description, icon);
