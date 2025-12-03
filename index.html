@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lucas' Gaming Portal</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">🎮 Lucas' Gaming Portal</div>
+            <ul class="nav-links">
+                <li><a href="#games">Spiele</a></li>
+                <li><a href="#links">Game Links</a></li>
+                <li><a href="#" id="admin-btn">Admin</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="hero">
+            <h1>Willkommen auf meiner Gaming-Seite!</h1>
+            <p>Spiele direkt hier oder entdecke weitere tolle Games über die Links.</p>
+        </section>
+
+        <section id="games">
+            <h2>🕹️ Spiele</h2>
+            <div class="games-container">
+                <div class="game-card">
+                    <h3>🐍 Snake</h3>
+                    <p>Der Klassiker! Sammle Punkte und werde immer länger.</p>
+                    <button onclick="openGame('snake')">Spielen</button>
+                </div>
+                <div class="game-card">
+                    <h3>❌⭕ Tic-Tac-Toe</h3>
+                    <p>Spiele gegen einen Freund!</p>
+                    <button onclick="openGame('tictactoe')">Spielen</button>
+                </div>
+                <div class="game-card">
+                    <h3>🧠 Memory</h3>
+                    <p>Teste dein Gedächtnis!</p>
+                    <button onclick="openGame('memory')">Spielen</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="links">
+            <h2>🔗 Weitere Games</h2>
+            <div class="links-container" id="game-links">
+                <!-- Links werden dynamisch geladen -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Game Modal -->
+    <div id="game-modal" class="modal">
+        <div class="modal-content game-modal-content">
+            <span class="close-btn" onclick="closeGame()">&times;</span>
+            <div id="game-container"></div>
+        </div>
+    </div>
+
+    <!-- Admin Login Modal -->
+    <div id="admin-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeAdminModal()">&times;</span>
+            <h2>🔐 Admin Login</h2>
+            <form id="admin-login-form">
+                <input type="password" id="admin-password" placeholder="Passwort eingeben" required>
+                <button type="submit">Einloggen</button>
+            </form>
+            <p id="login-error" class="error-msg"></p>
+        </div>
+    </div>
+
+    <!-- Admin Panel Modal -->
+    <div id="admin-panel" class="modal">
+        <div class="modal-content admin-panel-content">
+            <span class="close-btn" onclick="closeAdminPanel()">&times;</span>
+            <h2>⚙️ Admin Panel - Link Verwaltung</h2>
+            <div class="admin-section">
+                <h3>Neuen Link hinzufügen</h3>
+                <form id="add-link-form">
+                    <input type="text" id="link-title" placeholder="Titel" required>
+                    <input type="url" id="link-url" placeholder="URL (https://...)" required>
+                    <input type="text" id="link-description" placeholder="Beschreibung" required>
+                    <input type="text" id="link-icon" placeholder="Emoji Icon (z.B. 🎯)" required>
+                    <button type="submit">Link hinzufügen</button>
+                </form>
+            </div>
+            <div class="admin-section">
+                <h3>Vorhandene Links</h3>
+                <div id="admin-links-list"></div>
+            </div>
+            <button id="logout-btn" onclick="logout()">Ausloggen</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Lucas' Gaming Portal | Erstellt mit ❤️</p>
+    </footer>
+
+    <script src="js/games.js"></script>
+    <script src="js/admin.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
